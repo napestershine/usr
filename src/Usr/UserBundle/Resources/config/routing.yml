@@ -1,3 +1,11 @@
+role_selector:
+    path: /user-type
+    defaults: { _controller: UsrUserBundle:Default:roleselector }
+
+check_full_register:
+    path: /register-confirm
+    defaults: { _controller: UsrUserBundle:Default:registerconfirm }
+
 usr_user_homepage:
     path:     /
     defaults: { _controller: UsrUserBundle:Default:index }

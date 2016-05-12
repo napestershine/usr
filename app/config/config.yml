@@ -76,4 +76,10 @@ fos_user:
     firewall_name: main
     user_class: Usr\UserBundle\Entity\User
     group:
-            group_class: Usr\UserBundle\Entity\Group
+        group_class: Usr\UserBundle\Entity\Group
+    registration:
+        confirmation:
+            enabled: true
+            from_email:
+                address: admin@usr.com
+                sender_name: admin
