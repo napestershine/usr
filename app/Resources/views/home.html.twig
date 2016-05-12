@@ -45,41 +45,6 @@
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
 </nav>
-<div class="section no-pad-bot" id="index-banner">
-    <div class="container">
-        <br><br>
-        <h1 class="header center orange-text">Common Home Page</h1>
-        {% if is_granted('ROLE_ADMIN') %}
-            <div class="row center">
-                <a href="{{ path('usr_admin_homepage') }}" id="download-button"
-                   class="btn-large waves-effect waves-light orange">Admin</a>
-            </div>
-            <div class="row center">
-                <a href="{{ path('fos_user_profile_show') }}" id="download-button"
-                   class="btn-large waves-effect waves-light orange">Profile</a>
-            </div>
-        {% elseif is_granted('ROLE_USER') %}
-            <div class="row center">
-                <a href="{{ path('usr_dashboard_homepage') }}" id="download-button"
-                   class="btn-large waves-effect waves-light orange">Dashboard</a>
-            </div>
-            <div class="row center">
-                <a href="{{ path('fos_user_profile_show') }}" id="download-button"
-                   class="btn-large waves-effect waves-light orange">Profile</a>
-            </div>
-        {% else %}
-            <div class="row center">
-                <a href="{{ path('fos_user_security_login') }}" id="download-button"
-                   class="btn-large waves-effect waves-light orange">Login</a>
-            </div>
-            <div class="row center">
-                <a href="{{ path('fos_user_registration_register') }}" id="download-button"
-                   class="btn-large waves-effect waves-light orange">Register</a>
-            </div>
-        {% endif %}
-
-    </div>
-</div>
 {% block body %} {% endblock %}
 
 <footer class="page-footer orange">
