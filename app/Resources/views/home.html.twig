@@ -15,13 +15,31 @@
 <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">User Management</a>
         <ul class="right hide-on-med-and-down">
-            <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
-            <li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
+            {% if is_granted('ROLE_ADMIN') %}
+                {#<li><a href="{{ path('') }}">Admin</a></li>#}
+                <li><a href="{{ path('fos_user_profile_show') }}">Admin Profile</a></li>
+                <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+            {% elseif is_granted('ROLE_USER') %}
+                <li><a href="{{ path('fos_user_profile_show') }}">User Profile</a></li>
+                <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+            {% else %}
+                <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+                <li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
+            {% endif %}
         </ul>
 
         <ul id="nav-mobile" class="side-nav">
-            <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
-            <li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
+            {% if is_granted('ROLE_ADMIN') %}
+                {#<li><a href="{{ path('') }}">Admin</a></li>#}
+                <li><a href="{{ path('fos_user_profile_show') }}">Admin Profile</a></li>
+                <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+            {% elseif is_granted('ROLE_USER') %}
+                <li><a href="{{ path('fos_user_profile_show') }}">User Profile</a></li>
+                <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+            {% else %}
+                <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+                <li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
+            {% endif %}
         </ul>
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
