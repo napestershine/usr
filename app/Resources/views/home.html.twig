@@ -13,33 +13,38 @@
 </head>
 <body>
 <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">User Management</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="{{ path('usr_user_homepage') }}" class="brand-logo">User
+            Management</a>
         <ul class="right hide-on-med-and-down">
-            <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
-            <li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
+            {% if is_granted('ROLE_ADMIN') %}
+                <li><a href="{{ path('usr_admin_homepage') }}">Admin</a></li>
+                <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+            {% elseif is_granted('ROLE_USER') %}
+                <li><a href="{{ path('usr_dashboard_homepage') }}">Dashboard</a></li>
+                <li><a href="{{ path('fos_user_profile_show') }}">Profile</a></li>
+                <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+            {% else %}
+                <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+                <li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
+            {% endif %}
         </ul>
 
         <ul id="nav-mobile" class="side-nav">
-            <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
-            <li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
+            {% if is_granted('ROLE_ADMIN') %}
+                <li><a href="{{ path('usr_admin_homepage') }}">Admin</a></li>
+                <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+            {% elseif is_granted('ROLE_USER') %}
+                <li><a href="{{ path('usr_dashboard_homepage') }}">Dashboard</a></li>
+                <li><a href="{{ path('fos_user_profile_show') }}">Profile</a></li>
+                <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+            {% else %}
+                <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+                <li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
+            {% endif %}
         </ul>
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
 </nav>
-<div class="section no-pad-bot" id="index-banner">
-    <div class="container">
-        <br><br>
-        <h1 class="header center orange-text">Common Home Page</h1>
-        <div class="row center">
-            <a href="{{ path('fos_user_security_login') }}" id="download-button"
-               class="btn-large waves-effect waves-light orange">Login</a>
-        </div>
-        <div class="row center">
-            <a href="{{ path('fos_user_registration_register') }}" id="download-button"
-               class="btn-large waves-effect waves-light orange">Register</a>
-        </div>
-    </div>
-</div>
 {% block body %} {% endblock %}
 
 <footer class="page-footer orange">
