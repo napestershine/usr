@@ -6,4 +6,14 @@
             <h1>User section</h1>
         </div>
     </div>
+    <div class="container">
+        <div class="row">
+            Username : {{ user.username }}
+        </div>
+
+        <div class="row">
+            Email : {{ user.email }}
+        </div>
+    </div>
+    {% block data %}{% endblock %}
 {% endblock %}

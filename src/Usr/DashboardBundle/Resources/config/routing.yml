@@ -1,3 +1,7 @@
+usr_dashboard_contactprofile:
+    path:     /contact-profile
+    defaults: { _controller: UsrDashboardBundle:Default:contactprofile }
+
 usr_dashboard_homepage:
     path:     /
     defaults: { _controller: UsrDashboardBundle:Default:index }
