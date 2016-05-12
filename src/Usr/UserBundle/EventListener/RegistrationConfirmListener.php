@@ -1,6 +1,6 @@
 <?php
 
-namespace Usr\UserBundle\EventListe;
+namespace Usr\UserBundle\EventListener;
 
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Event\GetResponseUserEvent;
