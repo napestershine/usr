@@ -10,4 +10,9 @@ class DefaultController extends Controller
     {
         return $this->render('UsrUserBundle:Default:index.html.twig');
     }
+
+    public function registerconfirmAction()
+    {
+        return $this->render('UsrUserBundle:Default:registerconfirm.html.twig');
+    }
 }

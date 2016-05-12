@@ -1,6 +1,6 @@
 check_full_register:
     path: /register-confirm
-    defaults: { _controller: UsrUserBundle:Default:index }
+    defaults: { _controller: UsrUserBundle:Default:registerconfirm }
 
 usr_user_homepage:
     path:     /
