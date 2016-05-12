@@ -1,6 +1,6 @@
 usr_dashboard:
     resource: "@UsrDashboardBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /dashboard
 
 usr_admin:
     resource: "@UsrAdminBundle/Resources/config/routing.yml"
