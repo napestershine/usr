@@ -29,7 +29,7 @@ class RegistrationConfirmListener implements EventSubscriberInterface
 
     public function onRegistrationConfirm(GetResponseUserEvent $event)
     {
-        $url = $this->router->generate('rsWelcomeBundle_check_full_register');
+        $url = $this->router->generate('check_full_register');
 
         $event->setResponse(new RedirectResponse($url));
     }
