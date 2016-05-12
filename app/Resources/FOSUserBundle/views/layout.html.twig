@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
@@ -15,8 +15,17 @@
 <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">User Management</a>
         <ul class="right hide-on-med-and-down">
-            <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
-            <li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
+            {% if is_granted('ROLE_ADMIN') %}
+                {#<li><a href="{{ path('') }}">Admin</a></li>#}
+                <li><a href="{{ path('fos_user_profile_show') }}">Admin Profile</a></li>
+                <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+            {% elseif is_granted('ROLE_USER') %}
+                <li><a href="{{ path('fos_user_profile_show') }}">User Profile</a></li>
+                <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+            {% else %}
+                <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+                <li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
+            {% endif %}
         </ul>
 
         <ul id="nav-mobile" class="side-nav">
@@ -26,23 +35,38 @@
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
 </nav>
-<div class="section no-pad-bot" id="index-banner">
-    <div class="container">
-        <br><br>
-        <h1 class="header center orange-text">Common Home Page</h1>
-        <div class="row center">
-            <a href="{{ path('fos_user_security_login') }}" id="download-button"
-               class="btn-large waves-effect waves-light orange">Login</a>
-        </div>
-        <div class="row center">
-            <a href="{{ path('fos_user_registration_register') }}" id="download-button"
-               class="btn-large waves-effect waves-light orange">Register</a>
-        </div>
-        <br><br>
 
+<div class="container">
+    <div class="row">
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+            <a href="{{ path('fos_user_security_logout') }}">
+                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+            </a>
+        {% else %}
+            <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+        {% endif %}
     </div>
 </div>
-
+<div class="container">
+    <div class="row">
+        {% if app.request.hasPreviousSession %}
+            {% for type, messages in app.session.flashbag.all() %}
+                {% for message in messages %}
+                    <div class="flash-{{ type }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        {% block fos_user_content %}
+        {% endblock fos_user_content %}
+    </div>
+</div>
 <footer class="page-footer orange">
     <div class="container">
         <div class="row">
