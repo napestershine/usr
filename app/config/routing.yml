@@ -1,3 +1,7 @@
+fos_user_group:
+    resource: "@FOSUserBundle/Resources/config/routing/group.xml"
+    prefix: /group
+
 usr_dashboard:
     resource: "@UsrDashboardBundle/Resources/config/routing.yml"
     prefix:   /dashboard
