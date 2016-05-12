@@ -3,6 +3,9 @@
 namespace Usr\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use FOS\UserBundle\Model\UserInterface;
 
 class DefaultController extends Controller
 {
@@ -11,8 +14,14 @@ class DefaultController extends Controller
         return $this->render('UsrUserBundle:Default:index.html.twig');
     }
 
-    public function registerconfirmAction()
+    public function registerconfirmAction(Request $request)
     {
-        return $this->render('UsrUserBundle:Default:registerconfirm.html.twig');
+        $user = $this->getUser();
+        if (!is_object($user) || !$user instanceof UserInterface) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
+        return $this->render('UsrUserBundle:Default:registerconfirm.html.twig', array(
+            'user' => $user
+        ));
     }
 }
