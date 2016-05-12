@@ -1,0 +1,3 @@
+usr_dashboard_homepage:
+    path:     /
+    defaults: { _controller: UsrDashboardBundle:Default:index }

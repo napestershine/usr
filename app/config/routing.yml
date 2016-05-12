@@ -1,3 +1,11 @@
+usr_dashboard:
+    resource: "@UsrDashboardBundle/Resources/config/routing.yml"
+    prefix:   /
+
+usr_admin:
+    resource: "@UsrAdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
