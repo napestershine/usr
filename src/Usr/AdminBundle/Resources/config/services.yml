@@ -1,0 +1,4 @@
+services:
+#    usr_admin.example:
+#        class: Usr\AdminBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
