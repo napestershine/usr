@@ -1,6 +1,7 @@
 A Symfony project created on May 12, 2016, 10:09 am.
 
 **Goals**
+
 1. Add a multistep form
 2. User Registration by choice
 3. User can register with email or linkedin
