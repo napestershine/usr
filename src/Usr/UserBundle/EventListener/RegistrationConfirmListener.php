@@ -8,7 +8,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class RegistrationConfirmListener implements EventSubscriberInterface
+class RegistrationSuccessListener implements EventSubscriberInterface
 {
     private $router;
 
@@ -23,14 +23,13 @@ class RegistrationConfirmListener implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            FOSUserEvents::REGISTRATION_CONFIRM => 'onRegistrationConfirm'
+            FOSUserEvents::REGISTRATION_SUCCESS => 'onRegistrationSuccess'
         );
     }
 
-    public function onRegistrationConfirm(GetResponseUserEvent $event)
+    public function onRegistrationSuccess(GetResponseUserEvent $event)
     {
-        $url = $this->router->generate('check_full_register');
-
+        $url = $this->router->generate('fos_user_registration_success');
         $event->setResponse(new RedirectResponse($url));
     }
 }

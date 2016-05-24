@@ -58,9 +58,6 @@ class RegistrationController extends BaseController
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
-            $urlnew = $this->generateUrl('fos_user_registration_form');
-            $responsenew = new RedirectResponse($urlnew);
-
             $userManager->updateUser($user);
 
             if (null === $response = $event->getResponse()) {
@@ -165,6 +162,6 @@ class RegistrationController extends BaseController
 
     public function registercuccessAction()
     {
-        echo "here";
+        return $this->render('::base.html.twig', array());
     }
 }

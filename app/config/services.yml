@@ -3,7 +3,7 @@ parameters:
 
 services:
     usr_user.registration_complet:
-        class: Usr\UserBundle\EventListener\RegistrationConfirmListener
+        class: Usr\UserBundle\EventListener\RegistrationSuccessListener
         arguments: ["@router"]
         tags:
             - { name: kernel.event_subscriber }
