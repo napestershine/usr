@@ -25,19 +25,7 @@ class DefaultController extends Controller
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
-        $group = $user->getGroupName();
-        $form = $this->createForm('Usr\UserBundle\Form\GroupchoiceType', $group);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($group);
-        $em->flush();
 
         return $this->redirectToRoute('role_selector');
-    }
-
-        return $this->render('UsrUserBundle:Default:registerconfirm.html.twig', array(
-            'user' => $user
-        ));
     }
 }
