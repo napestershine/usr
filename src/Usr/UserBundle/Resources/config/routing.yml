@@ -9,6 +9,7 @@ check_full_register:
 usr_user_homepage:
     path:     /
     defaults: { _controller: UsrUserBundle:Default:index }
-fos_user_registration_form:
+
+fos_user_registration_success:
     path: /register-form
     defaults: { _controller: UsrUserBundle:Registration:registercuccess}
