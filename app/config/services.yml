@@ -2,7 +2,7 @@ parameters:
 #    parameter_name: value
 
 services:
-    usr_user.registration_complet:
+    usr_user.registration.success:
         class: Usr\UserBundle\EventListener\RegistrationSuccessListener
         arguments: ["@router"]
         tags:
