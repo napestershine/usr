@@ -21,7 +21,6 @@
                 <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
             {% elseif is_granted('ROLE_USER') %}
                 <li><a href="{{ path('usr_dashboard_homepage') }}">Dashboard</a></li>
-                <li><a href="{{ path('fos_user_profile_show') }}">Profile</a></li>
                 <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
             {% else %}
                 <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
@@ -35,7 +34,6 @@
                 <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
             {% elseif is_granted('ROLE_USER') %}
                 <li><a href="{{ path('usr_dashboard_homepage') }}">Dashboard</a></li>
-                <li><a href="{{ path('fos_user_profile_show') }}">Profile</a></li>
                 <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
             {% else %}
                 <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
@@ -55,19 +53,6 @@
             </a>
         {% else %}
             <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-        {% endif %}
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        {% if app.request.hasPreviousSession %}
-            {% for type, messages in app.session.flashbag.all() %}
-                {% for message in messages %}
-                    <div class="flash-{{ type }}">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            {% endfor %}
         {% endif %}
     </div>
 </div>
