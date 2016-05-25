@@ -13,19 +13,4 @@ class DefaultController extends Controller
     {
         return $this->render('UsrUserBundle:Default:index.html.twig');
     }
-
-    public function roleselectorAction()
-    {
-        return $this->render('UsrUserBundle:Default:roleselector.html.twig');
-    }
-
-    public function registerconfirmAction(Request $request)
-    {
-        $user = $this->getUser();
-        if (!is_object($user) || !$user instanceof UserInterface) {
-            throw new AccessDeniedException('This user does not have access to this section.');
-        }
-
-        return $this->redirectToRoute('role_selector');
-    }
 }

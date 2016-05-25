@@ -2,8 +2,3 @@ parameters:
 #    parameter_name: value
 
 services:
-    usr_user.registration.success:
-        class: Usr\UserBundle\EventListener\RegistrationSuccessListener
-        arguments: ["@router"]
-        tags:
-            - { name: kernel.event_subscriber }
