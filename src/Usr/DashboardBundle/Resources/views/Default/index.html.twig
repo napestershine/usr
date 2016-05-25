@@ -7,13 +7,23 @@
         </div>
     </div>
     <div class="container">
-        <div class="row">
-            Username : {{ user.username }}
-        </div>
-
-        <div class="row">
-            Email : {{ user.email }}
-        </div>
+        {% if errors  is not null %}
+            {% for error in errors %}
+                <div class="row">
+                    Error : {{ error }}
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="row">
+                Username : {{ user.username }}
+            </div>
+            <div class="row">
+                Email : {{ user.email }}
+            </div>
+            <div class="row">
+                Role : {{ role }}
+            </div>
+        {% endif %}
     </div>
     {% block data %}{% endblock %}
 {% endblock %}

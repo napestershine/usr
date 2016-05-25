@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Usr\UserBundle\Entity\User;
 
 class DefaultController extends Controller
 {
@@ -18,20 +19,28 @@ class DefaultController extends Controller
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
-        
+        if (empty($user->getEmail())) {
+            $errors[] = "Email not added";
+        }
 
-        $form = $this->createFormBuilder()
-            ->add('task', ChoiceType::class)
-            ->add('save', SubmitType::class, array('label' => 'Create Task'))
-            ->getForm();
+        if ($user->hasRole('ROLE_USER')) {
+            return $this->redirectToRoute('user_assign_role', array('username' => $user->getId()));
+        }
+
+        if (empty($errors)) {
+            $errors = null;
+        }
 
         return $this->render('@UsrDashboard/Default/index.html.twig', array(
-            'form' => $form->createView(),
+            'user' => $user,
+            'errors' => $errors,
         ));
     }
 
-    public function contactprofileAction()
+    public function assignroleAction(User $user, Request $request)
     {
-        return $this->render('@UsrDashboard/Default/contact-profile.html.twig');
+
     }
+
+
 }

@@ -81,7 +81,6 @@ class PostController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();
-
             return $this->redirectToRoute('post_edit', array('id' => $post->getId()));
         }
 
