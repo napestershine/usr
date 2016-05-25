@@ -31,5 +31,6 @@ class RegistrationSuccessListener implements EventSubscriberInterface
     {
         $url = $this->router->generate('fos_user_registration_success');
         $event->setResponse(new RedirectResponse($url));
+        $event->stopPropagation();
     }
 }
