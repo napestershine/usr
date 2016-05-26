@@ -5,7 +5,7 @@ namespace Usr\DashboardBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Usr\UserBundle\Entity\User;
 
-class Supplier extends User {
+class Buyer extends User {
 
     
 

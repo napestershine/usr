@@ -6,8 +6,16 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="fos_user")
+ * Usr\UserBundle\Entity\User.
+ *
+ * @ORM\Table(name="users")
+ * @ORM\HasLifecycleCallbacks
+ * @ORM\InheritanceType("JOINED")
+ * @ORM\Entity(repositoryClass="Usr\UserBundle\Repository\UserRepository")
+ * @UniqueEntity(fields = "username", targetClass = "Rocket\UserBundle\Entity\User", message="fos_user.username.already_used")
+ * @UniqueEntity(fields = "email", targetClass = "Rocket\UserBundle\Entity\User", message="fos_user.email.already_used")
+ * @ORM\DiscriminatorColumn(name="discr", type="string")
+ * @ORM\DiscriminatorMap({"supplier" = "Supplier", "buyer" = "Buyer", "user" = "User", "logistics" = "Logistics", "freelancer" = "Freelancer"})
  */
 class User extends BaseUser
 {
@@ -57,21 +65,6 @@ class User extends BaseUser
      * @ORM\Column(type="string", length=40, nullable=true)
      */
     protected $country;
-
-    /**
-     * @ORM\Column(type="string", length=14, nullable=true)
-     */
-    protected $phone;
-
-    /**
-     * @ORM\Column(name="linkedin", type="string", length=512, nullable=true)
-     */
-    protected $linkedin;
-
-    /**
-     * @ORM\Column(type="profil_image", type="string", length=255, nullable=true)
-     */
-    protected $profilImage;
 
     public function __construct()
     {
@@ -240,33 +233,33 @@ class User extends BaseUser
     }
 
     /**
-     * @param mixed $phone
+     * Set name.
+     *
+     * @param string $name
+     *
+     * @return \Usr\UserBundle\Entity\User
      */
-    public function setPhone($phone)
+    public function setName($name)
     {
-        $this->phone = $phone;
+        $spltName = explode(' ', $name);
+        $this->firstName = (isset($spltName[0])) ? array_shift($spltName) : null;
+        $this->lastName = (count($spltName) > 0) ? implode(' ', $spltName) : null;
+
+        return $this;
+    }
+
+    public function getName()
+    {
+        return (isset($this->firstName) || isset($this->lastName)) ? "{$this->firstName}  {$this->lastName}" : '';
     }
 
     /**
-     * @return mixed
+     * Get fullname.
+     *
+     * @return string
      */
-    public function getPhone()
+    public function getFullName()
     {
-        return $this->phone;
-    }
-    /**
-     * @return mixed
-     */
-    public function getLinkedin()
-    {
-        return $this->linkedin;
-    }
-
-    /**
-     * @param mixed $linkedin
-     */
-    public function setLinkedin($linkedin)
-    {
-        $this->linkedin = $linkedin;
+        return $this->firstName . ' ' . $this->lastName;
     }
 }
