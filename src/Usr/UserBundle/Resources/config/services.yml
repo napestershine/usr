@@ -1,4 +1,6 @@
 services:
-#    usr_user.example:
-#        class: Usr\UserBundle\Example
-#        arguments: ["@service_id", "plain_value", %parameter%]
+    usr_user.orm.validator.unique:
+            class: Usr\UserBundle\Validator\Constraints\UniqueEntityValidator
+            arguments: [ "@doctrine" ]
+            tags:
+                - { name: validator.constraint_validator, alias: rocket.orm.validator.unique }

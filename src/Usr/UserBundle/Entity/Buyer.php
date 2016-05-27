@@ -7,14 +7,14 @@ use Usr\UserBundle\Validator\Constraints\UniqueEntity as  UsrUniqueEntity;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * Usr\UserBundle\Entity\Supplier.
+ * Usr\UserBundle\Entity\Agent.
  *
- * @ORM\Table(name="suppliers")
+ * @ORM\Table(name="buyers")
  * @UsrUniqueEntity(fields = "username", targetClass = "Usr\UserBundle\Entity\User", message="fos_user.username.already_used")
  * @UsrUniqueEntity(fields = "email", targetClass = "Usr\UserBundle\Entity\User", message="fos_user.email.already_used")
- * @ORM\Entity(repositoryClass="Usr\UserBundle\Repository\SupplierRepository")
+ * @ORM\Entity(repositoryClass="Usr\UserBundle\Repository\BuyerRepository")
  */
-class Supplier extends User {
+class Buyer extends User {
 
     
 
